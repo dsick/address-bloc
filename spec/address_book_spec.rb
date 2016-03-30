@@ -101,10 +101,10 @@ RSpec.describe AddressBook do
       expect(book_size).to eq 3
     end
 
-    it "imports the 1st entry from 2nd csv" do
+    it "imports the 1st entry from 2nd csv and is sorted to 3rd entry" do
       book.import_from_csv("entries_2.csv")
       # Check the 1st entry
-      entry_one = book.entries[0]
+      entry_one = book.entries[2]
       check_entry(entry_one, "Ron", "555-555-3233", "ron@blocmail.com")
     end
 
@@ -115,10 +115,10 @@ RSpec.describe AddressBook do
       check_entry(entry_two, "Jimmy", "555-555-1122", "jimmy@blocmail.com")
     end
 
-    it "imports the 3rd entry second csv" do
+    it "imports the 3rd entry second csv and is sorted to 1st entry" do
       book.import_from_csv("entries_2.csv")
       # Check the 3rd entry
-      entry_three = book.entries[2]
+      entry_three = book.entries[0]
       check_entry(entry_three, "James", "555-555-2344", "james@blocmail.com")
     end
   end
