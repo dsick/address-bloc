@@ -40,7 +40,7 @@ class MenuController
         main_menu
       when 5
         system "clear"
-        view_entry
+        entry_n_submenu
         main_menu
       when 6
         puts "Good-bye!"
@@ -91,23 +91,17 @@ class MenuController
   def read_csv
   end
 
-  def view_entry
+  def entry_n_submenu
     puts "Enter the number for the contact"
-    selection = gets.chomp
-    if selection.to_i != 0
-      address_book.entries.each do |entry|
-        if entry.phone_number == selection
-          puts entry.to_s
-          main_menu
-        else
-          system "clear"
-          puts "#{selection} is not found as a number for any contacts. Please try again."
-          main_menu
-        end
-      end
+    selection = gets.chomp.to_i
+    if selection < @address_book.entries.count
+      puts "#{@address_book.entries[selection]}"
+      puts "Press enter to return to the main menu"
+      gets.chomp
+      system "clear"
     else
-      puts "Entry is not a number."
-      view_entry
+      puts "#{selection} is not found as a number for any contacts. Please try again."
+      entry_n_submenu
     end
   end
 
