@@ -94,15 +94,20 @@ class MenuController
   def view_entry
     puts "Enter the number for the contact"
     selection = gets.chomp
-    address_book.entries.each do |entry|
-      if entry.phone == selection
-        puts entry.to_s
-        main_menu
-      else
-        system "clear"
-        puts "#{selection} is not a number for a contact. Please try again."
-        main_menu
+    if selection.to_i != 0
+      address_book.entries.each do |entry|
+        if entry.phone_number == selection
+          puts entry.to_s
+          main_menu
+        else
+          system "clear"
+          puts "#{selection} is not found as a number for any contacts. Please try again."
+          main_menu
+        end
       end
+    else
+      puts "Entry is not a number."
+      view_entry
     end
   end
 
